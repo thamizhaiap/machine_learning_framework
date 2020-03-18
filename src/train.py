@@ -4,7 +4,10 @@ from sklearn import preprocessing
 from sklearn import ensemble
 from sklearn import metrics
 
+from . import dispatcher
+
 FOLD = 0
+MODEL = input('enter rf/et: ')
 
 FOLD_MAPPING = {
     0:[1,2,3,4],
@@ -48,10 +51,11 @@ if __name__ == "__main__":
         
     # data is ready to train
 
-    clf = ensemble.RandomForestClassifier(n_estimators=100, n_jobs=-1, verbose=2)
+    clf = dispatcher.MODELS[MODEL]
     clf.fit(train_df, ytrain)
     preds = clf.predict_proba(valid_df)[:,1]
     print(preds)
+    # print(metrics.roc_auc_score(yvalid, preds))
  
 
 
