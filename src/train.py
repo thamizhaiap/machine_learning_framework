@@ -1,8 +1,8 @@
-import numpy as np
 import pandas as pd
 from sklearn import preprocessing
 from sklearn import ensemble
 from sklearn import metrics
+import joblib
 
 from . import dispatcher
 
@@ -71,7 +71,8 @@ if __name__ == "__main__":
 
 
 
-
+    joblib.dump(label_encoders, f"models/{MODEL}_label_encoder.pkl")
+    joblib.dump(clf, f"models/{MODEL}.pkl")
 
 
 

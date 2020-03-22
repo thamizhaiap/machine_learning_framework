@@ -1,0 +1,30 @@
+# if the importmodule error occurs, check the shell bashrc in your working terminal for the 
+following code at the bottom. If you are using different shell like zsh, replace shell.bash to shell.zsh
+# in my case I am using bash terminal
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/tam/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+    if [ -f "/home/tam/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/tam/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/tam/anaconda3/bin:$PATH"
+    fi
+#fi
+conda activate
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+########################################
+
+
+# create and activate your own enviroment
+# in terminal, do the following
+# instead of kaggle, you can give your own env name
+
+conda create -n kaggle python=3.6
+conda activate kaggle
