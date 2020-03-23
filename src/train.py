@@ -23,6 +23,7 @@ print('*******************************')
 
 # Loading k-fold data set for training
 df = pd.read_csv('input/train_folds.csv')
+
 # Loading test dataset
 test_df = pd.read_csv('input/test.csv')
 
@@ -77,9 +78,9 @@ if __name__ == "__main__":
         
 
 
-        joblib.dump(label_encoders, f"models/{MODEL}_label_encoder.pkl")
-        joblib.dump(clf, f"models/{MODEL}.pkl")
-        joblib.dump(train_df.columns, f"models/{MODEL}_columns.pkl")
+        joblib.dump(label_encoders, f"models/{MODEL}_{FOLD}_label_encoder.pkl")
+        joblib.dump(clf, f"models/{MODEL}_{FOLD}.pkl")
+        joblib.dump(train_df.columns, f"models/{MODEL}_{FOLD}_columns.pkl")
 
      print(total_roc_auc)     
      print('ROC_AUC_SCORE: ', sum(total_roc_auc)/total_split)
