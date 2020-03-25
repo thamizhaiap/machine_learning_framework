@@ -75,22 +75,21 @@ class CrossValidation:
 
 
         ########################
-        # 
-        # elif self.problem_type.startswith("holdout_"):
-        #     holdout_percentage = int(self.problem_type.split("_")[1])                
-        #     num_holdout_samples = int(len(self.df)* holdout_percentage/100)
-        #     self.df.loc[:len(self.df) -  num_holdout_samples, "kfold"] = 0
-
-        #     #############################################check the semicolon
-        #     self.df.loc[len(self.df) -  num_holdout_samples:, "kfold"] = 1
+        # Holdout splitting
+        elif self.problem_type.startswith("holdout_"):
+            holdout_percentage = int(self.problem_type.split("_")[1])                
+            num_holdout_samples = int(len(self.df)* holdout_percentage/100)
+            self.df.loc[: len(self.df)-num_holdout_samples, "kfold"] = 0
+            self.df.loc[len(self.df)-num_holdout_samples :, "kfold"] = 1
 
 
 
 
-
-        # elif self.problem_type == "multilabel_classification":
-        #     if self.num_targets != 1:
-        #         raise Exception ("Invalid number of targets for this problem")
+        ########################
+        # KStratifiedFold for multilabel_classficiation
+        elif self.problem_type == "multilabel_classification":
+            if self.num_targets != 1:
+                raise Exception ("Invalid number of targets for this problem")
             
         #     targets = self.df[self.target_cols[0]].apply(lambda x: len(x).split(self.multilabel_delimeter))
 
