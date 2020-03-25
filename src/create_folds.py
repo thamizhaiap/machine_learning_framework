@@ -10,11 +10,10 @@ if __name__ == "__main__":
     total_split = 5
 
     kf = model_selection.StratifiedKFold(n_splits=total_split, shuffle=True, random_state=42)
-
+       
     for fold, (train_idx, val_idx) in enumerate(kf.split(X=df, y=df.target.values)):
         df.loc[val_idx, 'kfold'] = fold
-        print(len(train_idx), len(val_idx))
-
+       
     # creating csv file       
     df.to_csv('input/train_folds.csv', index=False)
 
